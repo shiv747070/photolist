@@ -1,18 +1,8 @@
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { Box, List } from "@mui/material";
 import React from "react";
-import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
-import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import { Listitem, NonIconitem } from "./Listitem";
 
-const Sidebar = () => {
+const Sidebar = ({list, nonList}) => {
   return (
     <Box
       sx={{
@@ -25,56 +15,19 @@ const Sidebar = () => {
         p: 1,
       }}
     >
-      <List>
-        <ListItem disablePadding sx={{ marginTop: 3 }}>
-          <ListItemButton component="a" href="#Explore">
-            <ListItemIcon>
-              <DirectionsOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Explore" color="#D6D6D" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component="a" href="#Topics">
-            <ListItemIcon>
-              <GridViewOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Topics" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component="a" href="#Digest">
-            <ListItemIcon>
-              <WbSunnyOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Digest" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component="a" href="#Bookmark">
-            <ListItemIcon>
-              <BookmarkBorderOutlinedIcon />
-            </ListItemIcon>
-            <ListItemText primary="Bookmark" />
-          </ListItemButton>
-        </ListItem>
+      <List sx={{ pt: 3 }}>
+        {list.map((props)=>{
+          return (
+            <Listitem {...props} />
+          )
+        })}
       </List>
       <List sx={{ bottom: "10px" }}>
-        <ListItem disablePadding>
-          <ListItemButton component="a" href="#Bookmark">
-            <ListItemText primary="Blog" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component="a" href="#Bookmark">
-            <ListItemText primary="About" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component="a" href="#Bookmark">
-            <ListItemText primary="Join the beta group" />
-          </ListItemButton>
-        </ListItem>
+        {nonList.map((props)=>{
+          return (
+            <NonIconitem {...props}/>
+          )
+        })}
       </List>
     </Box>
   );
